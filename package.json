@@ -1,6 +1,6 @@
 {
-  "name": "@martin_hotell/typescript-lib-starter",
-  "version": "4.1.0",
+  "name": "@the-gear/ts-lib-starter",
+  "version": "0.0.0",
   "description": "TypeScript library setup for multiple compilation targets using tsc and rollup",
   "keywords": [
     "typescript",
@@ -15,9 +15,12 @@
   "sideEffects": false,
   "repository": {
     "type": "git",
-    "url": "https://www.github.com/Hotell/typescript-lib-starter"
+    "url": "https://github.com/the-gear/ts-lib-starter"
   },
-  "author": "Martin Hochel",
+  "author": "Pavel Lang <langpavel+ts-lib-starter@the-gear.cz>",
+  "contributors": [
+    "Martin Hochel (https://github.com/Hotell/typescript-lib-starter)"
+  ],
   "license": "MIT",
   "engines": {
     "node": ">=8.5"
