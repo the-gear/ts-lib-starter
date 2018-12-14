@@ -7,7 +7,7 @@ const config = {
   semi: false,
   bracketSpacing: true,
   trailingComma: 'es5',
-  printWidth: 80,
+  printWidth: 100,
 }
 
 module.exports = config
