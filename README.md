@@ -3,7 +3,7 @@
 > This is fork of [typescript-lib-starter](https://github.com/Hotell/typescript-lib-starter)
 > by [Martin Hochel](https://github.com/Hotell)
 
-[![Build Status](https://travis-ci.com/the-gear/ts-lib-starter.svg?branch=master)](https://travis-ci.com/the-gear/ts-lib-starter)
+[![Build Status](https://travis-ci.com/the-gear/ts-lib-starter.svg?branch=ts-lib-starter)](https://travis-ci.com/the-gear/ts-lib-starter)
 [![Standard Version](https://img.shields.io/badge/release-standard%20version-brightgreen.svg)](https://github.com/conventional-changelog/standard-version)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
