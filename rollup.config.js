@@ -12,10 +12,10 @@ import pkg from './package.json';
 const { pascalCase, normalizePackageName, getOutputFileName } = require('./config/helpers');
 
 /**
- * @typedef {import('./types').RollupConfig} Config
+ * @typedef {import('./config/types').RollupConfig} Config
  */
 /**
- * @typedef {import('./types').RollupPlugin} Plugin
+ * @typedef {import('./config/types').RollupPlugin} Plugin
  */
 
 const env = process.env.NODE_ENV || 'development';
