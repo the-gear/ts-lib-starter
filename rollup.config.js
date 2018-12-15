@@ -8,8 +8,8 @@ import { uglify } from 'rollup-plugin-uglify';
 import { terser } from 'rollup-plugin-terser';
 import { getIfUtils, removeEmpty } from 'webpack-config-utils';
 
-import pkg from '../package.json';
-const { pascalCase, normalizePackageName, getOutputFileName } = require('./helpers');
+import pkg from './package.json';
+const { pascalCase, normalizePackageName, getOutputFileName } = require('./config/helpers');
 
 /**
  * @typedef {import('./types').RollupConfig} Config
@@ -22,7 +22,7 @@ const env = process.env.NODE_ENV || 'development';
 const { ifProduction } = getIfUtils(env);
 
 const LIB_NAME = pascalCase(normalizePackageName(pkg.name));
-const ROOT = resolve(__dirname, '..');
+const ROOT = resolve(__dirname);
 const DIST = resolve(ROOT, 'dist');
 
 /**
