@@ -22,6 +22,9 @@
     "Martin Hochel (https://github.com/Hotell/typescript-lib-starter)"
   ],
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "engines": {
     "node": ">=8.5"
   },
