@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.0"></a>
+
+# [1.0.0](https://github.com/the-gear/ts-lib-starter/compare/v5.0.0...v1.0.0) (2018-12-15)
+
+### Bug Fixes
+
+- **init:** fix typing ([a8ec45b](https://github.com/the-gear/ts-lib-starter/commit/a8ec45b))
+
 <a name="5.0.0"></a>
 
 # [5.0.0](https://github.com/Hotell/typescript-lib-starter/compare/v4.1.0...v5.0.0) (2018-12-12)

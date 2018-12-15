@@ -1,6 +1,6 @@
 {
   "name": "@the-gear/ts-lib-starter",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "TypeScript library setup for multiple compilation targets using tsc and rollup",
   "keywords": [
     "typescript",
