@@ -5,8 +5,8 @@
   "editor.formatOnSave": true,
   "typescript.format.enable": false,
   "javascript.format.enable": false,
-  "typescript.implementationsCodeLens.enabled": true,
-  "typescript.referencesCodeLens.enabled": true,
-  "javascript.referencesCodeLens.enabled": true,
+  // "typescript.implementationsCodeLens.enabled": true,
+  // "typescript.referencesCodeLens.enabled": true,
+  // "javascript.referencesCodeLens.enabled": true,
   "editor.rulers": [100]
 }
