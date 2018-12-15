@@ -318,7 +318,7 @@ function createQuestions(config) {
       initial: /**@type any */ (false)
     },
     {
-      type: /** @type {import('prompts').ValueOrFunc<string>} */ ((prev) =>
+      type: /** @type {import('prompts').ValueOrFunc<import('prompts').PromptType>} */ ((prev) =>
         prev === true ? 'text' : null),
       name: 'scope',
       message: 'Scope/namespace (needs to start with @)',
