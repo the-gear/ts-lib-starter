@@ -8,7 +8,5 @@
   "typescript.implementationsCodeLens.enabled": true,
   "typescript.referencesCodeLens.enabled": true,
   "javascript.referencesCodeLens.enabled": true,
-  "editor.rulers": [100],
-  // This needs to be here as prettier plugin has problems with consumning prettier config outside of root
-  "prettier.arrowParens": "always"
+  "editor.rulers": [100]
 }
