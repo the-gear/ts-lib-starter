@@ -3,7 +3,7 @@
  */
 const config = {
   preset: 'ts-jest',
-  rootDir: '..',
+  rootDir: '.',
   testMatch: [
     '<rootDir>/src/**/__tests__/**/*.ts?(x)',
     '<rootDir>/src/**/?(*.)+(spec|test).ts?(x)',
