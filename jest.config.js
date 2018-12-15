@@ -8,6 +8,7 @@ const config = {
     '<rootDir>/src/**/__tests__/**/*.ts?(x)',
     '<rootDir>/src/**/?(*.)+(spec|test).ts?(x)',
   ],
+  modulePathIgnorePatterns: ['dist'],
   testPathIgnorePatterns: ['dist'],
   coverageThreshold: {
     global: {
