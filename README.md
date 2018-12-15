@@ -3,14 +3,11 @@
 > This is fork of [typescript-lib-starter](https://github.com/Hotell/typescript-lib-starter)
 > by [Martin Hochel](https://github.com/Hotell)
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/Hotell/typescript-lib-starter.svg)](https://greenkeeper.io/)
-
-[![Build Status](https://travis-ci.com/Hotell/typescript-lib-starter.svg?branch=master)](https://travis-ci.com/Hotell/typescript-lib-starter)
-[![NPM version](https://img.shields.io/npm/v/%40martin_hotell%2Ftypescript-lib-starter.svg)](https://www.npmjs.com/package/@martin_hotell/typescript-lib-starter)
-![Downloads](https://img.shields.io/npm/dm/@martin_hotell/typescript-lib-starter.svg)
+[![Build Status](https://travis-ci.com/the-gear/ts-lib-starter.svg?branch=master)](https://travis-ci.com/the-gear/ts-lib-starter)
 [![Standard Version](https://img.shields.io/badge/release-standard%20version-brightgreen.svg)](https://github.com/conventional-changelog/standard-version)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
+[![Greenkeeper badge](https://badges.greenkeeper.io/the-gear/ts-lib-starter.svg)](https://greenkeeper.io/)
 
 This npm library starter:
 
@@ -31,7 +28,7 @@ This npm library starter:
 
 ## Start coding in 2 steps !
 
-1.  `git clone https://github.com/Hotell/typescript-lib-starter <your-libary-folder-name> && cd $_`
+1.  `git clone https://github.com/the-gear/ts-lib-starter <your-libary-folder-name> && cd $_`
 
 1.  `yarn`
 
