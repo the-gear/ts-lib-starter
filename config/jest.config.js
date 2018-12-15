@@ -18,10 +18,7 @@ const config = {
     },
   },
   setupFiles: ['<rootDir>/config/setup-tests.js'],
-  watchPlugins: [
-    'jest-watch-typeahead/filename',
-    'jest-watch-typeahead/testname',
-  ],
-}
+  watchPlugins: ['jest-watch-typeahead/filename', 'jest-watch-typeahead/testname'],
+};
 
-module.exports = config
+module.exports = config;

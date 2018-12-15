@@ -1,28 +1,28 @@
-const kleur = require('kleur')
-const prompts = require('prompts')
-const sh = require('shelljs')
-const sortObjectByKeyNameList = require('sort-object-keys')
-const replace = require('replace-in-file')
-const { resolve, join } = require('path')
-const { writeFileSync } = require('fs')
-const { fork } = require('child_process')
+const kleur = require('kleur');
+const prompts = require('prompts');
+const sh = require('shelljs');
+const sortObjectByKeyNameList = require('sort-object-keys');
+const replace = require('replace-in-file');
+const { resolve, join } = require('path');
+const { writeFileSync } = require('fs');
+const { fork } = require('child_process');
 
-const { log, error } = console
-const ROOT = resolve(__dirname, '..')
-const pkg = require('../package.json')
+const { log, error } = console;
+const ROOT = resolve(__dirname, '..');
+const pkg = require('../package.json');
 
 /**
  * @typedef {keyof typeof pkg['devDependencies']} PkgKeys
  */
 
-const rmDirs = ['.git', 'templates']
+const rmDirs = ['.git', 'templates'];
 const rmFiles = [
   '.gitattributes',
   'scripts/migrate.js',
   'scripts/init.js',
   'scripts/types.d.ts',
   'CHANGELOG.md',
-]
+];
 const rmPackages = [
   '@types/chokidar',
   // packages needed for migrate/init script
@@ -34,15 +34,15 @@ const rmPackages = [
   '@types/prompts',
   'prompts',
   'shelljs',
-]
+];
 const modifyFiles = [
   '.github/CONTRIBUTING.md',
   '.github/ISSUE_TEMPLATE.md',
   'src/index.ts',
   'LICENSE.md',
-]
+];
 
-main()
+main();
 
 // =============================================================================
 //  Helpers
@@ -53,9 +53,9 @@ main()
  * @param {string[]} value
  */
 function normalizeListResponse(value) {
-  const isEmptyList = value.length === 1 && value[0] === ''
+  const isEmptyList = value.length === 1 && value[0] === '';
 
-  return isEmptyList ? [] : value
+  return isEmptyList ? [] : value;
 }
 
 /**
@@ -63,8 +63,8 @@ function normalizeListResponse(value) {
  * @param {string} value
  */
 function isKebabCase(value) {
-  const kebabCaseRegex = /^[a-z]+(\-[a-z]+)*$/
-  return kebabCaseRegex.test(value)
+  const kebabCaseRegex = /^[a-z]+(\-[a-z]+)*$/;
+  return kebabCaseRegex.test(value);
 }
 
 /**
@@ -72,7 +72,7 @@ function isKebabCase(value) {
  * @param {string} value
  */
 function isTextRequired(value) {
-  return typeof value === 'string' && value.length > 0
+  return typeof value === 'string' && value.length > 0;
 }
 
 /**
@@ -80,8 +80,8 @@ function isTextRequired(value) {
  * @param {string} value
  */
 function isEmail(value) {
-  const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-  return re.test(String(value).toLowerCase())
+  const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(value).toLowerCase());
 }
 
 /**
@@ -89,7 +89,7 @@ function isEmail(value) {
  * @param {string} value
  */
 function isValidScopeName(value) {
-  return value.startsWith('@') && isKebabCase(value.slice(1))
+  return value.startsWith('@') && isKebabCase(value.slice(1));
 }
 
 /**
@@ -100,50 +100,50 @@ function isValidScopeName(value) {
  * @returns {{[pkgName:string]:string}} deps
  */
 function omitPropsFromObject(objectEntity, propsToRemove) {
-  const objKeys = Object.keys(objectEntity)
+  const objKeys = Object.keys(objectEntity);
 
   return objKeys.reduce((acc, pkgName) => {
     if (propsToRemove.includes(pkgName)) {
-      return acc
+      return acc;
     }
-    return { ...acc, [pkgName]: objectEntity[pkgName] }
-  }, {})
+    return { ...acc, [pkgName]: objectEntity[pkgName] };
+  }, {});
 }
 
 function clearConsole() {
-  process.stdout.write('\x1B[2J\x1B[0f')
+  process.stdout.write('\x1B[2J\x1B[0f');
 }
 
 function checkGit() {
   if (!sh.which('git')) {
-    log(kleur.red('Sorry, this script requires git'))
-    process.exit(1)
+    log(kleur.red('Sorry, this script requires git'));
+    process.exit(1);
   }
 }
 
 function initGit() {
   const gitInitOutput = /**@type {string} */ (sh.exec(`git init "${ROOT}"`, {
     silent: true,
-  }).stdout)
+  }).stdout);
 
-  log(kleur.green(gitInitOutput.replace(/(\n|\r)+/g, '')))
+  log(kleur.green(gitInitOutput.replace(/(\n|\r)+/g, '')));
 }
 
 function initGitHooks() {
-  const huskyModule = resolve(ROOT, 'node_modules', 'husky', 'husky')
+  const huskyModule = resolve(ROOT, 'node_modules', 'husky', 'husky');
   // Initialize Husky
   const childProcess = fork(huskyModule, ['install'], {
     silent: true,
-  })
+  });
 
   childProcess
     .on('close', () => {
-      log(kleur.green('Git hooks set up'))
+      log(kleur.green('Git hooks set up'));
     })
     .on('error', (err) => {
-      log(kleur.red('Git hooks set up FAILED 💥'))
-      error(err)
-    })
+      log(kleur.red('Git hooks set up FAILED 💥'));
+      error(err);
+    });
 }
 
 /**
@@ -158,18 +158,18 @@ function createTemplateVariablesConfig(
 ) {
   const extrasConfig = extras.reduce(
     (acc, configPair) => {
-      const [from, to] = configPair
+      const [from, to] = configPair;
       if (from && to) {
-        acc.from = [...acc.from, from]
-        acc.to = [...acc.to, to]
+        acc.from = [...acc.from, from];
+        acc.to = [...acc.to, to];
       }
-      return acc
+      return acc;
     },
     {
       from: /** @type {Array<string|RegExp>} */ ([]),
       to: /** @type {Array<string>} */ ([]),
     }
-  )
+  );
 
   return {
     files,
@@ -182,16 +182,8 @@ function createTemplateVariablesConfig(
       /\{usermail\}/g,
       ...extrasConfig.from,
     ],
-    to: [
-      libraryName,
-      packageName,
-      description,
-      githubName,
-      username,
-      usermail,
-      ...extrasConfig.to,
-    ],
-  }
+    to: [libraryName, packageName, description, githubName, username, usermail, ...extrasConfig.to],
+  };
 }
 
 /**
@@ -208,12 +200,10 @@ function processPgkJson({
   githubName,
   version = '0.0.0',
 }) {
-  const { devDependencies, scripts } = pkg
+  const { devDependencies, scripts } = pkg;
 
-  const newDevDeps = sortObjectByKeyNameList(
-    omitPropsFromObject(devDependencies, rmPackages)
-  )
-  const newScripts = omitPropsFromObject(scripts, ['postinstall'])
+  const newDevDeps = sortObjectByKeyNameList(omitPropsFromObject(devDependencies, rmPackages));
+  const newScripts = omitPropsFromObject(scripts, ['postinstall']);
 
   /**
    * @type {typeof pkg}
@@ -231,18 +221,18 @@ function processPgkJson({
     },
     scripts: /** @type {any} */ (newScripts),
     devDependencies: /** @type {any} */ (newDevDeps),
-  }
+  };
 
-  writePackage(updatePkg)
+  writePackage(updatePkg);
 
   /**
    * @param {typeof pkg} pkg
    */
   function writePackage(pkg) {
-    const updatedLibPkgToWrite = JSON.stringify(pkg, null, 2)
-    writeFileSync(join(ROOT, 'package.json'), updatedLibPkgToWrite)
+    const updatedLibPkgToWrite = JSON.stringify(pkg, null, 2);
+    writeFileSync(join(ROOT, 'package.json'), updatedLibPkgToWrite);
 
-    log(kleur.green('package.json was setup successfully'), '\n')
+    log(kleur.green('package.json was setup successfully'), '\n');
   }
 }
 
@@ -252,21 +242,19 @@ function processPgkJson({
  * @param {import('./types').LibConfig} config
  */
 function removeItems(config) {
-  log(kleur.underline().white('Removed'))
+  log(kleur.underline().white('Removed'));
 
-  const vsCodeDirToRemove = config.useVSCode ? null : '.vscode'
-  const rmItems = /** @type {string[]} */ ([
-    ...rmDirs,
-    ...rmFiles,
-    vsCodeDirToRemove,
-  ].filter(Boolean))
+  const vsCodeDirToRemove = config.useVSCode ? null : '.vscode';
+  const rmItems = /** @type {string[]} */ ([...rmDirs, ...rmFiles, vsCodeDirToRemove].filter(
+    Boolean
+  ));
 
-  const files = rmItems.map((fileName) => resolve(ROOT, fileName))
+  const files = rmItems.map((fileName) => resolve(ROOT, fileName));
 
   // 'rm' command checks the item type before attempting to remove it
-  sh.rm('-rf', files)
+  sh.rm('-rf', files);
 
-  log(kleur.red(rmItems.join('\n')), '\n')
+  log(kleur.red(rmItems.join('\n')), '\n');
 }
 
 /**
@@ -275,37 +263,37 @@ function removeItems(config) {
  * @param {import('./types').LibConfig} config
  */
 function modifyContents(config) {
-  console.log(kleur.underline().white('Modified'))
+  console.log(kleur.underline().white('Modified'));
 
-  const files = modifyFiles.map((fileName) => resolve(ROOT, fileName))
+  const files = modifyFiles.map((fileName) => resolve(ROOT, fileName));
 
   const replaceConfig = createTemplateVariablesConfig(files, config, [
     [
       /Martin\s+Hochel/g, // This is here only for LICENSE.md
       `${config.username} <${config.usermail}>`,
     ],
-  ])
+  ]);
 
   try {
-    const changedFiles = replace.sync(replaceConfig)
+    const changedFiles = replace.sync(replaceConfig);
 
-    log(kleur.yellow(changedFiles.join('\n')))
+    log(kleur.yellow(changedFiles.join('\n')));
   } catch (reason) {
-    error('An error occurred modifying the file: ', reason)
+    error('An error occurred modifying the file: ', reason);
   }
 
-  log('\n')
+  log('\n');
 }
 
 function getUserInfo() {
   const username = /** @type {string} */ (sh.exec('git config user.name', {
     silent: true,
-  }).stdout)
+  }).stdout);
   const usermail = /** @type {string} */ (sh.exec('git config user.email', {
     silent: true,
-  }).stdout)
+  }).stdout);
 
-  return { username: username.trim(), usermail: usermail.trim() }
+  return { username: username.trim(), usermail: usermail.trim() };
 }
 
 /**
@@ -335,8 +323,7 @@ function createQuestions(config) {
       name: 'scope',
       message: 'Scope/namespace (needs to start with @)',
       validate: (value) =>
-        isValidScopeName(value) ||
-        `namespace needs to start with @ followed by kebab-case`,
+        isValidScopeName(value) || `namespace needs to start with @ followed by kebab-case`,
     },
     {
       type: 'text',
@@ -353,8 +340,7 @@ function createQuestions(config) {
     {
       type: 'confirm',
       name: 'useVSCode',
-      message:
-        'Are you using VSCode and wanna include recommended configuration?',
+      message: 'Are you using VSCode and wanna include recommended configuration?',
       // prettier-ignore
       initial: /**@type any */ (false)
     },
@@ -363,8 +349,7 @@ function createQuestions(config) {
       name: 'username',
       message: 'Your name',
       initial: config.username,
-      validate: (value) =>
-        isTextRequired(value) || `Please provide your name and surname`,
+      validate: (value) => isTextRequired(value) || `Please provide your name and surname`,
     },
     {
       type: 'text',
@@ -377,10 +362,9 @@ function createQuestions(config) {
       type: 'text',
       name: 'githubName',
       message: 'Your github account name',
-      validate: (value) =>
-        isTextRequired(value) || `Please provide valid github username`,
+      validate: (value) => isTextRequired(value) || `Please provide valid github username`,
     },
-  ]
+  ];
 }
 
 /**
@@ -389,60 +373,58 @@ function createQuestions(config) {
  * @returns {import('./types').LibConfig}
  */
 function getLibConfig({ scope, libraryName, ...promptAnswers }) {
-  const packageName = scope ? `${scope}/${libraryName}` : libraryName
+  const packageName = scope ? `${scope}/${libraryName}` : libraryName;
 
   return {
     packageName,
     libraryName,
     ...promptAnswers,
-  }
+  };
 }
 
 /**
  * @param {import('./types').LibConfig} config
  */
 function processTemplates(config) {
-  const templatesDir = resolve(ROOT, 'templates')
-  const files = ['README.md'].map((fileName) => resolve(templatesDir, fileName))
-  const replaceConfig = createTemplateVariablesConfig(files, config)
+  const templatesDir = resolve(ROOT, 'templates');
+  const files = ['README.md'].map((fileName) => resolve(templatesDir, fileName));
+  const replaceConfig = createTemplateVariablesConfig(files, config);
 
-  log(kleur.underline().white('Creating files from templates'))
+  log(kleur.underline().white('Creating files from templates'));
 
   try {
-    const changedFiles = replace.sync(replaceConfig)
+    const changedFiles = replace.sync(replaceConfig);
 
-    sh.cp('-Rf', `${templatesDir}/*`, `${ROOT}/`)
+    sh.cp('-Rf', `${templatesDir}/*`, `${ROOT}/`);
 
-    log(kleur.yellow(changedFiles.join('\n')))
+    log(kleur.yellow(changedFiles.join('\n')));
   } catch (reason) {
-    error('An error occurred modifying the file: ', reason)
+    error('An error occurred modifying the file: ', reason);
   }
 
-  log('\n')
+  log('\n');
 }
 
 async function main() {
-  clearConsole()
-  checkGit()
+  clearConsole();
+  checkGit();
 
-  const userInfo = getUserInfo()
-  const questions = createQuestions(userInfo)
-  const response = /** @type {import('./types').PromptAnswers} */ (await prompts(
-    questions
-  ))
-  const config = getLibConfig(response)
+  const userInfo = getUserInfo();
+  const questions = createQuestions(userInfo);
+  const response = /** @type {import('./types').PromptAnswers} */ (await prompts(questions));
+  const config = getLibConfig(response);
 
-  processPgkJson(config)
+  processPgkJson(config);
 
-  modifyContents(config)
+  modifyContents(config);
 
-  processTemplates(config)
+  processTemplates(config);
 
-  removeItems(config)
+  removeItems(config);
 
-  initGit()
+  initGit();
 
-  initGitHooks()
+  initGitHooks();
 
-  log(kleur.cyan("OK, you're all set. Happy type-safe coding!! 🌊 🏄 ‍🤙 \n"))
+  log(kleur.cyan("OK, you're all set. Happy type-safe coding!! 🌊 🏄 ‍🤙 \n"));
 }

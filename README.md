@@ -62,18 +62,18 @@ npm install my-new-library
 
 ```ts
 // main.ts or main.js
-import { Greeter } from 'my-new-library'
+import { Greeter } from 'my-new-library';
 
-const mountPoint = document.getElementById('app')
+const mountPoint = document.getElementById('app');
 const App = () => {
-  const greeter = new Greeter('Stranger')
-  return `<h1>${greeter.greet()}</h1>`
-}
+  const greeter = new Greeter('Stranger');
+  return `<h1>${greeter.greet()}</h1>`;
+};
 const render = (Root: Function, where: HTMLElement) => {
-  where.innerHTML = Root()
-}
+  where.innerHTML = Root();
+};
 
-render(App, mountPoint)
+render(App, mountPoint);
 ```
 
 ```html
@@ -94,40 +94,37 @@ render(App, mountPoint)
 <html>
   <head>
     <script type="module">
-      import { Greeter } from './node_modules/my-lib/esm2015/index.js'
+      import { Greeter } from './node_modules/my-lib/esm2015/index.js';
 
-      const mountPoint = document.querySelector('#root')
+      const mountPoint = document.querySelector('#root');
 
       const App = () => {
-        const greeter = new Greeter('Stranger')
-        return `<h1>${greeter.greet()}</h1>`
-      }
+        const greeter = new Greeter('Stranger');
+        return `<h1>${greeter.greet()}</h1>`;
+      };
 
       const render = (Root, where) => {
-        where.innerHTML = Root()
-      }
+        where.innerHTML = Root();
+      };
 
-      render(App, mountPoint)
+      render(App, mountPoint);
     </script>
-    <script
-      nomodule
-      src="node_modules/my-lib/bundles/my-new-library.umd.min.js"
-    ></script>
+    <script nomodule src="node_modules/my-lib/bundles/my-new-library.umd.min.js"></script>
     <script nomodule async>
-      var Greeter = MyLib.Greeter
+      var Greeter = MyLib.Greeter;
 
-      var mountPoint = document.querySelector('#root')
+      var mountPoint = document.querySelector('#root');
 
       var App = function() {
-        var greeter = new Greeter('Stranger')
-        return '<h1>' + greeter.greet() + '</h1>'
-      }
+        var greeter = new Greeter('Stranger');
+        return '<h1>' + greeter.greet() + '</h1>';
+      };
 
       var render = function(Root, where) {
-        where.innerHTML = Root()
-      }
+        where.innerHTML = Root();
+      };
 
-      render(App, mountPoint)
+      render(App, mountPoint);
     </script>
   </head>
   <body>
