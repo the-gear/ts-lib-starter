@@ -50,6 +50,7 @@
     "lint:fix": "yarn run lint --fix",
     "prerelease": "yarn run build",
     "release": "standard-version",
+    "release:dry": "standard-version --dry-run",
     "postrelease": "node scripts/copy.js && yarn run release:github && yarn run release:npm",
     "release:github": "git push --no-verify --follow-tags origin master",
     "release:npm": "cd dist && npm publish",
