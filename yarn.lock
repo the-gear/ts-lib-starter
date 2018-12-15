@@ -263,20 +263,20 @@
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
   integrity sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA==
 
-"@types/node@*", "@types/node@10.12.12":
-  version "10.12.12"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.12.tgz#e15a9d034d9210f00320ef718a50c4a799417c47"
-  integrity sha512-Pr+6JRiKkfsFvmU/LK68oBRCQeEg36TyAbPhc2xpez24OOZZCuoIhWGTd39VZy6nGafSbxzGouFPTFD/rR1A0A==
+"@types/node@*", "@types/node@10.12.15":
+  version "10.12.15"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.15.tgz#20e85651b62fd86656e57c9c9bc771ab1570bc59"
+  integrity sha512-9kROxduaN98QghwwHmxXO2Xz3MaWf+I1sLVAA6KJDF5xix+IyXVhds0MAfdNwtcpSrzhaTsNB0/jnL86fgUhqA==
 
 "@types/prettier@1.15.2":
   version "1.15.2"
   resolved "https://registry.yarnpkg.com/@types/prettier/-/prettier-1.15.2.tgz#91594ea7cb6f3b1f7ea69f32621246654c7cc231"
   integrity sha512-XIB0ZCaFZmWUHAa9dBqP5UKXXHwuukmVlP+XcyU94dui2k+l2lG+CHAbt2ffenHPUqoIs5Beh8Pdf2YEq/CZ7A==
 
-"@types/prompts@1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@types/prompts/-/prompts-1.1.1.tgz#5688abfa6a95ddfe808f8ae5337e86e5cf8f3147"
-  integrity sha512-iqE02VXr48Dw//ZBTU0wiL1gbBn3sclnAuTztMLjd2L3bKgq2Qcn0d6ezIXFMaaAl2382g99CUp/p3scU/JCpQ==
+"@types/prompts@1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@types/prompts/-/prompts-1.2.0.tgz#891e73f735ad5e82e8adae3a99424128e105fb62"
+  integrity sha512-7JXpT2rSd4hqd2oBWU1wfEW6x6gX+qPH+gLzGEx+My3wcb67K9Rc02xNQRVn67phusmXm5Yqn4oTP2OW1G5zdQ==
 
 "@types/shelljs@^0.8.0":
   version "0.8.1"
@@ -6220,10 +6220,10 @@ tslint-eslint-rules@^5.3.1:
     tslib "1.9.0"
     tsutils "^3.0.0"
 
-tslint-etc@1.2.8:
-  version "1.2.8"
-  resolved "https://registry.yarnpkg.com/tslint-etc/-/tslint-etc-1.2.8.tgz#4a1a65c6bea96237168a0b4a2d0d1e0ced0e73fd"
-  integrity sha512-nQ+Y+nYMhPgUNCE2L6qDAI6Z26qUASiFrLIhSdZWAXiHRiiMUzIK7jMEL7ZFDE8rFWo7mv6jgFkJWUZ3pFwN7A==
+tslint-etc@1.2.9:
+  version "1.2.9"
+  resolved "https://registry.yarnpkg.com/tslint-etc/-/tslint-etc-1.2.9.tgz#9d65752623811c9535ef866a337f0d55dc2d7b4f"
+  integrity sha512-udn24mt5/Mdg7Sw8uxU7B0dyMbGb30IA7v/F+DNH0uvXo+dLbTF7QKMhRV79q//ziy2Z1WvG9g1k6wb5lx0opw==
   dependencies:
     "@phenomnomnominal/tsquery" "^3.0.0"
     tslib "^1.8.0"
