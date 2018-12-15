@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="6.0.2"></a>
+
+## [6.0.2](https://github.com/the-gear/ts-lib-starter/compare/v6.0.1...v6.0.2) (2018-12-15)
+
+### Features
+
+- **npm:** publish to npm registry ([da89b7d](https://github.com/the-gear/ts-lib-starter/commit/da89b7d))
+- **scripts:** new `release:dry` command ([a95c1a2](https://github.com/the-gear/ts-lib-starter/commit/a95c1a2))
+
 <a name="6.0.1"></a>
 
 ## [6.0.1](https://github.com/the-gear/ts-lib-starter/compare/v6.0.0...v6.0.1) (2018-12-15)
