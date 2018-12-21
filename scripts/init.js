@@ -104,10 +104,6 @@ function omitPropsFromObject(objectEntity, propsToRemove) {
   }, {});
 }
 
-function clearConsole() {
-  process.stdout.write('\x1B[2J\x1B[0f');
-}
-
 function checkGit() {
   if (!sh.which('git')) {
     log(kleur.red('Sorry, this script requires git'));
@@ -120,19 +116,15 @@ function checkGit() {
  * @param {import('./types').LibConfig} config
  */
 function initGit(config) {
-  const gitInitOutput = /**@type {string} */ (sh.exec(`git init "${ROOT}"`, {
-    silent: true,
-  }).stdout);
+  const gitInitOutput = execSilent(`git init "${ROOT}"`);
   log(kleur.green(gitInitOutput.replace(/(\n|\r)+/g, '')));
 
   const { githubName, libraryName } = config;
   if (githubName && libraryName) {
     const remote = `git@github.com:${githubName}/${libraryName}.git`;
     const gitRemoteAddCmd = `git -C "${ROOT}" remote add origin "${remote}"`;
-    const gitRemoteOutput = /**@type {string} */ (sh.exec(gitRemoteAddCmd, {
-      silent: true,
-    }).stdout);
-    log(kleur.green(gitRemoteOutput.replace(/(\n|\r)+/g, '')));
+    const gitRemoteOutput = execSilent(gitRemoteAddCmd);
+    log(kleur.green(`Added remote ${kleur.bold('origin')} → ${remote}`));
   }
 }
 
@@ -294,17 +286,30 @@ function modifyContents(config) {
 }
 
 /**
+ * Execute command silently
+ * @param {string} command
+ * @returns {string}
+ */
+function execSilent(command) {
+  /** @type {import('shelljs').ExecOutputReturnValue} */
+  const { code, stdout, stderr } = sh.exec(command, {
+    silent: true,
+  });
+
+  if (code) {
+    throw new Error(`FAILED: ${command}\v${stderr}`);
+  }
+
+  return stdout.trim();
+}
+
+/**
  * Execute `git config $name`, returns string
  * @param {string} name
  * @returns {string}
  */
 function getGitConfig(name) {
-  return sh
-    .exec(`git config "${name}"`, {
-      silent: true,
-    })
-    .stdout.toString()
-    .trim();
+  return execSilent(`git config "${name}"`);
 }
 
 /**
@@ -437,8 +442,12 @@ function onCancel() {
 }
 
 async function main() {
-  clearConsole();
   checkGit();
+
+  const starterCommit = execSilent(`git -C "${ROOT}" describe`);
+  log(`\n\n⚙️  This is ${kleur.bold(pkg.name)} ${kleur.yellow(starterCommit)}`);
+  log(`⚙️  ${pkg.description}`);
+  log(`⚙️  > ${ROOT}\n\n`);
 
   const userInfo = getUserInfo();
   const questions = createQuestions(userInfo);
