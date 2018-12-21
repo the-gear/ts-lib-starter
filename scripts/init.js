@@ -142,13 +142,13 @@ function initGit(config) {
 }
 
 function initGitHooks() {
-  return new Promise((resolve, reject) => {
-    const huskyModule = resolve(ROOT, 'node_modules', 'husky', 'husky');
-    // Initialize Husky
-    const childProcess = fork(huskyModule, ['install'], {
-      silent: true,
-    });
+  const huskyModule = resolve(ROOT, 'node_modules', 'husky', 'husky');
+  const childProcess = fork(huskyModule, ['install'], {
+    silent: true,
+  });
 
+  return new Promise((resolve, reject) => {
+    // Initialize Husky
     childProcess
       .on('close', () => {
         log(kleur.green('Git hooks set up'));

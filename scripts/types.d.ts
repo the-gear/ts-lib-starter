@@ -22,3 +22,10 @@ export type PromptAnswers = {
   useScope: boolean;
   scope: string;
 } & CommonProps;
+
+module 'shelljs' {
+  function exec(
+    command: string,
+    options: ExecOptions & { async?: false | undefined },
+  ): ExecOutputReturnValue;
+}
