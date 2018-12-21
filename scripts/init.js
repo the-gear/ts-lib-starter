@@ -142,20 +142,24 @@ function initGit(config) {
 }
 
 function initGitHooks() {
-  const huskyModule = resolve(ROOT, 'node_modules', 'husky', 'husky');
-  // Initialize Husky
-  const childProcess = fork(huskyModule, ['install'], {
-    silent: true,
-  });
-
-  childProcess
-    .on('close', () => {
-      log(kleur.green('Git hooks set up'));
-    })
-    .on('error', (err) => {
-      log(kleur.red('Git hooks set up FAILED 💥'));
-      error(err);
+  return new Promise((resolve, reject) => {
+    const huskyModule = resolve(ROOT, 'node_modules', 'husky', 'husky');
+    // Initialize Husky
+    const childProcess = fork(huskyModule, ['install'], {
+      silent: true,
     });
+
+    childProcess
+      .on('close', () => {
+        log(kleur.green('Git hooks set up'));
+        resolve();
+      })
+      .on('error', (err) => {
+        log(kleur.red('Git hooks set up FAILED 💥'));
+        error(err);
+        reject(err);
+      });
+  });
 }
 
 /**
@@ -485,7 +489,7 @@ async function main() {
     starterCommitDescribe,
   });
 
-  initGitHooks();
+  await initGitHooks();
 
   log(kleur.cyan("OK, you're all set. Happy type-safe coding!! 🌊 🏄 ‍🤙 \n"));
 }
