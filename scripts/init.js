@@ -222,6 +222,7 @@ function processPgkJson({
     description,
     keywords,
     author: `${username} <${usermail}>`,
+    contributors: [],
     repository: {
       ...pkg.repository,
       url: `https://github.com/${githubName}/${libraryName}`,
