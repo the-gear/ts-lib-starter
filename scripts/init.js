@@ -385,7 +385,7 @@ function createQuestions(config) {
     {
       type: 'text',
       name: 'githubName',
-      message: 'Your github account name',
+      message: 'Your github account (or organization) name',
       initial: config.githubName,
       validate: (value) => isTextRequired(value) || `Please provide valid github username`,
     },
