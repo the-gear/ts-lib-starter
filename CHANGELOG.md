@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="6.2.0"></a>
+
+# [6.2.0](https://github.com/the-gear/ts-lib-starter/compare/v6.0.2...v6.2.0) (2018-12-21)
+
+### Bug Fixes
+
+- **init:** add "(or organization)" to github question ([b524de1](https://github.com/the-gear/ts-lib-starter/commit/b524de1))
+- **init:** do not proceed after user abort (with Ctrl+C) ([2be1e78](https://github.com/the-gear/ts-lib-starter/commit/2be1e78))
+- **init:** fix shadowed resolve, add typedef for shelljs.exex ([0b197b8](https://github.com/the-gear/ts-lib-starter/commit/0b197b8))
+- **init:** log final good coding really after all ([96242f9](https://github.com/the-gear/ts-lib-starter/commit/96242f9))
+- **init:** remove contributors from package.json ([8b7c457](https://github.com/the-gear/ts-lib-starter/commit/8b7c457))
+- **init:** use ROOT instead of cwd() ([eacba69](https://github.com/the-gear/ts-lib-starter/commit/eacba69))
+
+### Features
+
+- **init:** better defaults ([c34e13f](https://github.com/the-gear/ts-lib-starter/commit/c34e13f))
+- **init:** better init UX ([d20a55c](https://github.com/the-gear/ts-lib-starter/commit/d20a55c))
+- **init:** create initial commit with link to commit on starter ([6fb98c3](https://github.com/the-gear/ts-lib-starter/commit/6fb98c3))
+- **init:** default is now to include vscode settings ([8a8fa10](https://github.com/the-gear/ts-lib-starter/commit/8a8fa10))
+- **init:** default value of scope is parent dir name ([826e581](https://github.com/the-gear/ts-lib-starter/commit/826e581))
+- **init:** use cwd for initial project name ([e46f1b0](https://github.com/the-gear/ts-lib-starter/commit/e46f1b0))
+
 <a name="6.1.0"></a>
 
 # [6.1.0](https://github.com/the-gear/ts-lib-starter/compare/v6.0.2...v6.1.0) (2018-12-21)
