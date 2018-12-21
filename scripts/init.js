@@ -286,7 +286,7 @@ function getUserInfo() {
   const usermail = /** @type {string} */ (sh.exec('git config user.email', {
     silent: true,
   }).stdout);
-  const libraryName = basename(process.cwd());
+  const libraryName = basename(ROOT);
 
   return { username: username.trim(), usermail: usermail.trim(), libraryName };
 }
