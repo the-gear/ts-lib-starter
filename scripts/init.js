@@ -115,12 +115,25 @@ function checkGit() {
   }
 }
 
-function initGit() {
+/**
+ *
+ * @param {import('./types').LibConfig} config
+ */
+function initGit(config) {
   const gitInitOutput = /**@type {string} */ (sh.exec(`git init "${ROOT}"`, {
     silent: true,
   }).stdout);
-
   log(kleur.green(gitInitOutput.replace(/(\n|\r)+/g, '')));
+
+  const { githubName, libraryName } = config;
+  if (githubName && libraryName) {
+    const remote = `git@github.com:${githubName}/${libraryName}.git`;
+    const gitRemoteAddCmd = `git -C "${ROOT}" remote add origin "${remote}"`;
+    const gitRemoteOutput = /**@type {string} */ (sh.exec(gitRemoteAddCmd, {
+      silent: true,
+    }).stdout);
+    log(kleur.green(gitRemoteOutput.replace(/(\n|\r)+/g, '')));
+  }
 }
 
 function initGitHooks() {
@@ -279,20 +292,34 @@ function modifyContents(config) {
   log('\n');
 }
 
-function getUserInfo() {
-  const username = /** @type {string} */ (sh.exec('git config user.name', {
-    silent: true,
-  }).stdout);
-  const usermail = /** @type {string} */ (sh.exec('git config user.email', {
-    silent: true,
-  }).stdout);
-  const libraryName = basename(ROOT);
-
-  return { username: username.trim(), usermail: usermail.trim(), libraryName };
+/**
+ * Execute `git config $name`, returns string
+ * @param {string} name
+ * @returns {string}
+ */
+function getGitConfig(name) {
+  return sh
+    .exec(`git config "${name}"`, {
+      silent: true,
+    })
+    .stdout.trim();
 }
 
 /**
- * @param {Pick<import('./types').LibConfig,'username' | 'usermail' | 'libraryName'>} config
+ * Prepare default values for questions
+ * @returns {Partial<import('./types').LibConfig>}
+ */
+function getUserInfo() {
+  const libraryName = basename(ROOT);
+  const username = getGitConfig('user.name');
+  const usermail = getGitConfig('user.email');
+  const githubName = getGitConfig('github.user') || username;
+
+  return { libraryName, username, usermail, githubName };
+}
+
+/**
+ * @param {Partial<import('./types').LibConfig>} config
  * @returns {import('prompts').PromptObject[]}
  */
 function createQuestions(config) {
@@ -301,10 +328,10 @@ function createQuestions(config) {
       type: 'text',
       name: 'libraryName',
       message: 'What do you want the library to be called? (use kebab-case)',
+      initial: config.libraryName,
       validate: (value) =>
         isKebabCase(value) ||
         `"kebab-case" uses lowercase letters, and hyphens for any punctuation`,
-      initial: config.libraryName,
     },
     {
       type: 'confirm',
@@ -358,6 +385,7 @@ function createQuestions(config) {
       type: 'text',
       name: 'githubName',
       message: 'Your github account name',
+      initial: config.githubName,
       validate: (value) => isTextRequired(value) || `Please provide valid github username`,
     },
   ];
@@ -425,7 +453,7 @@ async function main() {
 
   removeItems(config);
 
-  initGit();
+  initGit(config);
 
   initGitHooks();
 
