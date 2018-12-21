@@ -37,8 +37,7 @@
   "husky": {
     "hooks": {
       "commit-msg": "commitlint --config config/commitlint.config.js -E HUSKY_GIT_PARAMS",
-      "pre-commit": "lint-staged",
-      "pre-push": "yarn run style && yarn test --bail --onlyChanged"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
