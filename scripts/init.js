@@ -399,13 +399,20 @@ function processTemplates(config) {
   log('\n');
 }
 
+function onCancel() {
+  error(kleur.bgRed(' Aborted ! '));
+  process.exit(1);
+}
+
 async function main() {
   clearConsole();
   checkGit();
 
   const userInfo = getUserInfo();
   const questions = createQuestions(userInfo);
-  const response = /** @type {import('./types').PromptAnswers} */ (await prompts(questions));
+  const response = /** @type {import('./types').PromptAnswers} */ (await prompts(questions, {
+    onCancel: onCancel,
+  }));
   const config = getLibConfig(response);
 
   processPgkJson(config);
