@@ -391,7 +391,7 @@ function createQuestions(config) {
       name: 'useVSCode',
       message: 'Are you using VSCode and wanna include recommended configuration?',
       // prettier-ignore
-      initial: /**@type any */ (false)
+      initial: true
     },
     {
       type: 'text',
