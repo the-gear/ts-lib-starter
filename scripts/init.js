@@ -3,7 +3,7 @@ const prompts = require('prompts');
 const sh = require('shelljs');
 const sortObjectByKeyNameList = require('sort-object-keys');
 const replace = require('replace-in-file');
-const { resolve, join } = require('path');
+const { resolve, join, basename } = require('path');
 const { writeFileSync } = require('fs');
 const { fork } = require('child_process');
 
@@ -286,12 +286,13 @@ function getUserInfo() {
   const usermail = /** @type {string} */ (sh.exec('git config user.email', {
     silent: true,
   }).stdout);
+  const libraryName = basename(process.cwd());
 
-  return { username: username.trim(), usermail: usermail.trim() };
+  return { username: username.trim(), usermail: usermail.trim(), libraryName };
 }
 
 /**
- * @param {Pick<import('./types').LibConfig,'username' | 'usermail'>} config
+ * @param {Pick<import('./types').LibConfig,'username' | 'usermail' | 'libraryName'>} config
  * @returns {import('prompts').PromptObject[]}
  */
 function createQuestions(config) {
@@ -303,6 +304,7 @@ function createQuestions(config) {
       validate: (value) =>
         isKebabCase(value) ||
         `"kebab-case" uses lowercase letters, and hyphens for any punctuation`,
+      initial: config.libraryName,
     },
     {
       type: 'confirm',
