@@ -334,12 +334,13 @@ function getGitConfig(name) {
  * @returns {Partial<import('./types').LibConfig>}
  */
 function getUserInfo() {
+  const scope = `@${basename(resolve(ROOT, '..'))}`;
   const libraryName = basename(ROOT);
   const username = getGitConfig('user.name');
   const usermail = getGitConfig('user.email');
   const githubName = getGitConfig('github.user') || username;
 
-  return { libraryName, username, usermail, githubName };
+  return { scope, libraryName, username, usermail, githubName };
 }
 
 /**
@@ -369,6 +370,7 @@ function createQuestions(config) {
         prev === true ? 'text' : null),
       name: 'scope',
       message: 'Scope/namespace (needs to start with @)',
+      initial: config.scope,
       validate: (value) =>
         isValidScopeName(value) || `namespace needs to start with @ followed by kebab-case`,
     },
@@ -420,13 +422,20 @@ function createQuestions(config) {
  * @param {import('./types').PromptAnswers} promptAnswers
  * @returns {import('./types').LibConfig}
  */
-function getLibConfig({ scope, libraryName, ...promptAnswers }) {
-  const packageName = scope ? `${scope}/${libraryName}` : libraryName;
+function getLibConfig(promptAnswers) {
+  const { useScope, libraryName } = promptAnswers;
+  let scope;
+  let packageName = libraryName;
+
+  if (useScope && promptAnswers.scope) {
+    scope = promptAnswers.scope;
+    packageName = `${scope}/${libraryName}`;
+  }
 
   return {
-    packageName,
-    libraryName,
     ...promptAnswers,
+    scope,
+    packageName,
   };
 }
 
@@ -491,5 +500,5 @@ async function main() {
 
   await initGitHooks();
 
-  log(kleur.cyan(kleur.bold("OK, you're all set. Happy type-safe coding!! 🌊 🏄 ‍🤙 \n")));
+  log(kleur.cyan(kleur.bold("\nOK, you're all set. Happy type-safe coding!! 🌊 🏄 ‍🤙 \n")));
 }

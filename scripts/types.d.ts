@@ -16,8 +16,10 @@ export type LibConfig = {
    * if scope is provided this property is the published npm name `@scope/libName`
    */
   packageName: string;
+  scope?: string;
   version?: string;
 } & CommonProps;
+
 export type PromptAnswers = {
   useScope: boolean;
   scope: string;
