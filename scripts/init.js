@@ -491,5 +491,5 @@ async function main() {
 
   await initGitHooks();
 
-  log(kleur.cyan("OK, you're all set. Happy type-safe coding!! 🌊 🏄 ‍🤙 \n"));
+  log(kleur.cyan(kleur.bold("OK, you're all set. Happy type-safe coding!! 🌊 🏄 ‍🤙 \n")));
 }
