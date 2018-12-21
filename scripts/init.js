@@ -302,7 +302,8 @@ function getGitConfig(name) {
     .exec(`git config "${name}"`, {
       silent: true,
     })
-    .stdout.trim();
+    .stdout.toString()
+    .trim();
 }
 
 /**
