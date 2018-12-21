@@ -16,13 +16,7 @@ const pkg = require('../package.json');
  */
 
 const rmDirs = ['.git', 'templates'];
-const rmFiles = [
-  '.gitattributes',
-  'scripts/migrate.js',
-  'scripts/init.js',
-  'scripts/types.d.ts',
-  'CHANGELOG.md',
-];
+const rmFiles = ['.gitattributes', 'scripts/init.js', 'scripts/types.d.ts', 'CHANGELOG.md'];
 const rmPackages = [
   '@types/chokidar',
   // packages needed for migrate/init script
