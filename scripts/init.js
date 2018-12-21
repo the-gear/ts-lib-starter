@@ -113,18 +113,31 @@ function checkGit() {
 
 /**
  *
- * @param {import('./types').LibConfig} config
+ * @param {import('./types').LibConfig & {starterCommit: string, starterCommitDescribe:string}} config
  */
 function initGit(config) {
   const gitInitOutput = execSilent(`git init "${ROOT}"`);
   log(kleur.green(gitInitOutput.replace(/(\n|\r)+/g, '')));
 
-  const { githubName, libraryName } = config;
+  const { githubName, libraryName, starterCommit, starterCommitDescribe } = config;
   if (githubName && libraryName) {
     const remote = `git@github.com:${githubName}/${libraryName}.git`;
     const gitRemoteAddCmd = `git -C "${ROOT}" remote add origin "${remote}"`;
     const gitRemoteOutput = execSilent(gitRemoteAddCmd);
     log(kleur.green(`Added remote ${kleur.bold('origin')} → ${remote}`));
+  }
+
+  if (starterCommit) {
+    const commitMsg = [
+      'Initial commit',
+      '',
+      `Based on ${pkg.name} at ${starterCommitDescribe}`,
+      `${pkg.repository.url || pkg.repository}/tree/${starterCommit}`,
+    ];
+
+    execSilent(`git -C "${ROOT}" add .`);
+    execSilent(`git -C "${ROOT}" commit -n -m "${commitMsg.join('\n')}"`);
+    log(kleur.yellow(`\n${kleur.bold('Git — Added')} ${commitMsg.join('\n')}\n`));
   }
 }
 
@@ -444,7 +457,9 @@ function onCancel() {
 async function main() {
   checkGit();
 
-  const starterCommit = execSilent(`git -C "${ROOT}" describe`);
+  const starterCommit = execSilent('git rev-parse --verify HEAD');
+  const starterCommitDescribe = execSilent(`git -C "${ROOT}" describe`);
+
   log(`\n\n⚙️  This is ${kleur.bold(pkg.name)} ${kleur.yellow(starterCommit)}`);
   log(`⚙️  ${pkg.description}`);
   log(`⚙️  > ${ROOT}\n\n`);
@@ -464,7 +479,11 @@ async function main() {
 
   removeItems(config);
 
-  initGit(config);
+  initGit({
+    ...config,
+    starterCommit,
+    starterCommitDescribe,
+  });
 
   initGitHooks();
 
