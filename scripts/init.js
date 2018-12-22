@@ -129,7 +129,7 @@ function initGit(config) {
 
   if (starterCommit) {
     const commitMsg = [
-      'Initial commit',
+      'chore(package): initial commit',
       '',
       `Based on ${pkg.name} at ${starterCommitDescribe}`,
       `${pkg.repository.url || pkg.repository}/tree/${starterCommit}`,
