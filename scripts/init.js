@@ -473,7 +473,7 @@ async function main() {
   const starterCommit = execSilent('git rev-parse --verify HEAD');
   const starterCommitDescribe = execSilent(`git -C "${ROOT}" describe`);
 
-  log(`\n\n⚙️  This is ${kleur.bold(pkg.name)} ${kleur.yellow(starterCommit)}`);
+  log(`\n\n⚙️  This is ${kleur.bold(pkg.name)} ${kleur.yellow(starterCommitDescribe)}`);
   log(`⚙️  ${pkg.description}`);
   log(`⚙️  > ${ROOT}\n\n`);
 
