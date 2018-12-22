@@ -1,13 +1,12 @@
 # @the-gear/ts-lib-starter
 
-> This is fork of [typescript-lib-starter](https://github.com/Hotell/typescript-lib-starter)
-> by [Martin Hochel](https://github.com/Hotell)
-
 [![Build Status](https://travis-ci.com/the-gear/ts-lib-starter.svg?branch=ts-lib-starter)](https://travis-ci.com/the-gear/ts-lib-starter)
 [![Standard Version](https://img.shields.io/badge/release-standard%20version-brightgreen.svg)](https://github.com/conventional-changelog/standard-version)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 [![Greenkeeper badge](https://badges.greenkeeper.io/the-gear/ts-lib-starter.svg)](https://greenkeeper.io/)
+
+**`git clone https://github.com/the-gear/ts-lib-starter`** _LIBNAME_ **`&& cd $_ && yarn`**
 
 This npm library starter:
 
@@ -26,13 +25,12 @@ This npm library starter:
   - > `types` field in package.json
 - `sideEffects` 👉 [support proper tree-shaking](https://webpack.js.org/guides/tree-shaking/#mark-the-file-as-side-effect-free) for whole library ( Webpack >= 4). Turn this off or adjust as needed if your modules are not pure!
 
-## Start coding in 2 steps !
+## Start coding in seconds !
 
-1.  `git clone https://github.com/the-gear/ts-lib-starter <your-libary-folder-name> && cd $_`
+1.  `git clone https://github.com/the-gear/ts-lib-starter LIBNAME && cd $_`
+2.  `yarn`
 
-1.  `yarn`
-
-![setting-up-your-library](https://user-images.githubusercontent.com/1223799/49905150-fd09c880-fe6c-11e8-9ad8-425c3a38b1b4.gif)
+[![asciicast](https://asciinema.org/a/217978.svg)](https://asciinema.org/a/217978)
 
 Yes that's it. Happy coding ! 🖖
 
@@ -46,7 +44,7 @@ yarn add my-new-library
 npm install my-new-library
 ```
 
-1.  use it 💪
+2.  use it 💪
 
 ### Webpack
 
@@ -218,3 +216,9 @@ Before TS 2.9, it wasn't possible to properly generate ambient definitions if yo
 >
 > - turn of type checking and don't generate types for that lazy import: `import('./components/button') as any`
 > - or you can use this [temporary workaround](https://github.com/Microsoft/TypeScript/issues/16603#issuecomment-310208259)
+
+## Thanks
+
+This is fork of [typescript-lib-starter](https://github.com/Hotell/typescript-lib-starter)
+by [Martin Hochel](https://github.com/Hotell)
+but [almost entirely rewritten](https://github.com/Hotell/typescript-lib-starter/pull/154)
