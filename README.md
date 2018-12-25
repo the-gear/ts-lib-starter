@@ -222,3 +222,8 @@ Before TS 2.9, it wasn't possible to properly generate ambient definitions if yo
 This is fork of [typescript-lib-starter](https://github.com/Hotell/typescript-lib-starter)
 by [Martin Hochel](https://github.com/Hotell)
 but [almost entirely rewritten](https://github.com/Hotell/typescript-lib-starter/pull/154)
+
+## Other TypeScript Starters
+
+- [Hotell/typescript-lib-starter](https://github.com/Hotell/typescript-lib-starter)
+- [alexjoverm/typescript-library-starter](https://github.com/alexjoverm/typescript-library-starter)
