@@ -222,8 +222,8 @@ Before TS 2.9, it wasn't possible to properly generate ambient definitions if yo
 This is fork of [typescript-lib-starter](https://github.com/Hotell/typescript-lib-starter)
 by [Martin Hochel](https://github.com/Hotell). Thank you! 🏅
 
-- _diff_ [Hotell ← :gear:](https://github.com/Hotell/typescript-lib-starter/compare/master...langpavel:ts-lib-starter) — _local changes_
-- _diff_ [:gear: ← Hotell](https://github.com/langpavel/typescript-lib-starter/compare/ts-lib-starter...Hotell:master) — _Martin's new stuff_
+- _diff_ [Hotell/typescript-lib-starter ← :gear: ts-lib-starter](https://github.com/Hotell/typescript-lib-starter/compare/master...langpavel:ts-lib-starter) — _local changes_ [![](https://img.shields.io/github/last-commit/the-gear/ts-lib-starter/ts-lib-starter.svg)](https://github.com/the-gear/ts-lib-starter/commits/ts-lib-starter)
+- _diff_ [:gear: ts-lib-starter ← Hotell/typescript-lib-starter](https://github.com/langpavel/typescript-lib-starter/compare/ts-lib-starter...Hotell:master) — _Martin's new stuff_ [![](https://img.shields.io/github/last-commit/Hotell/typescript-lib-starter/master.svg)](https://github.com/Hotell/typescript-lib-starter/commits/master)
 
 ## Other TypeScript Starters
 
