@@ -1,9 +1,6 @@
 // ============================
-// ts-jest types require 'babel__core'
+// extend existing types
 // ============================
-declare module 'babel__core' {
-  interface TransformOptions {}
-}
 
 // ============================
 // Rollup plugins without types
@@ -59,6 +56,12 @@ declare module 'rollup-plugin-terser' {
 // =====================
 // missing library types
 // =====================
+
+// ts-jest types require 'babel__core'
+declare module 'babel__core' {
+  interface TransformOptions {}
+}
+
 declare module '@commitlint/core' {
   interface Config {
     extends: string[];
@@ -69,7 +72,6 @@ declare module 'sort-object-keys' {
   export = sortPackageJson;
 }
 
-declare module 'prompt';
 declare module 'replace-in-file' {
   interface Options {
     files: string | string[];

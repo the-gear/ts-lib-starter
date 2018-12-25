@@ -419,6 +419,23 @@ function createQuestions(config) {
 
 /**
  *
+ * @param {import('prompts').PromptObject} prompt
+ * @param {any} answers
+ * @returns {void | boolean}
+ */
+function handlePromptExit(prompt, answers) {
+  error(
+    kleur
+      .bold()
+      .white()
+      .bgRed(' Library init aborted ! ')
+  );
+
+  process.exit(1);
+}
+
+/**
+ *
  * @param {import('./types').PromptAnswers} promptAnswers
  * @returns {import('./types').LibConfig}
  */
@@ -462,11 +479,6 @@ function processTemplates(config) {
   log('\n');
 }
 
-function onCancel() {
-  error(kleur.bgRed(' Aborted ! '));
-  process.exit(1);
-}
-
 async function main() {
   checkGit();
 
@@ -480,7 +492,7 @@ async function main() {
   const userInfo = getUserInfo();
   const questions = createQuestions(userInfo);
   const response = /** @type {import('./types').PromptAnswers} */ (await prompts(questions, {
-    onCancel: onCancel,
+    onCancel: handlePromptExit,
   }));
   const config = getLibConfig(response);
 
