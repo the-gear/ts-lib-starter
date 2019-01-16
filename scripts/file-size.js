@@ -52,7 +52,8 @@ function getFormatedOutput(pkgName, filesOutput) {
  */
 function formatSize(size, filename, type, raw) {
   const pretty = raw || size < 1000 ? `${size}  B` : prettyBytes(size);
-  const color = (str /*: string */) =>
+  /** @type {(str:string) => string} */
+  const color = (str) =>
     kolor.bold(size < 5000 ? kolor.green(str) : size > 40000 ? kolor.red(str) : kolor.yellow(str));
 
   return `  ${basename(filename)}${type ? `.${kolor.bold(type)}` : '   '}  ${color(
@@ -74,6 +75,7 @@ async function getSizeInfo(code, filename, raw = false) {
   const orig = formatSize(size, filename, '', isRaw);
   const gzip = formatSize(gziped, filename, 'gz', isRaw);
   const brotli = formatSize(brotlied, filename, 'br', isRaw);
+  /** @type {(str:number) => string} */
   const percent = (num) => kolor.gray(`${(num * 100).toFixed(1)}%`);
 
   return `\n${orig}\n${gzip}  ${percent(gziped / size)}\n${brotli}  ${percent(brotlied / size)}`;
