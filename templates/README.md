@@ -1,12 +1,8 @@
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/1223799/50992071-73562500-1516-11e9-99fa-9f73b0f0eee2.png" width="597" alt="{library-name}">
-</p>
-
 # {library-name}
 
 > {library-description}
 
-[![Build Status](https://travis-ci.com/{github-name}/{library-name}.svg?branch=master)](https://travis-ci.com/{github-name}/{library-name})
+[![Build Status](https://travis-ci.com/{github-name}/{library-name}.svg?branch=master)](https://travis-ci.org/{github-name}/{library-name})
 [![NPM version](https://img.shields.io/npm/v/{package-name}.svg)](https://www.npmjs.com/package/{package-name})
 ![Downloads](https://img.shields.io/npm/dm/{package-name}.svg)
 [![Standard Version](https://img.shields.io/badge/release-standard%20version-brightgreen.svg)](https://github.com/conventional-changelog/standard-version)
@@ -58,10 +54,11 @@ This methods does foo bar moo...
 <summary>How to do Foo</summary>
 
 Today we're gonna build Foo....
-</detail>
 
-### 🕵️‍♀️ Troubleshooting
+</details>
+
+### 🕵️ Troubleshooting
 
 ## 🥂 License
 
-[MIT](./LICENSE.md) as always
+[MIT](./LICENSE.md)
