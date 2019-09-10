@@ -60,6 +60,7 @@
     "@types/node": "^12.7.4",
     "@types/prettier": "^1.16.1",
     "@types/prompts": "^2.0.1",
+    "@types/shelljs": "^0.8.5",
     "@types/webpack-config-utils": "^2.3.0",
     "brotli-size": "^4.0.0",
     "commitizen": "^4.0.3",
