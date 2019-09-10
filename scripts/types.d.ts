@@ -45,3 +45,8 @@ declare module 'replace-in-file' {
   const api: API;
   export = api;
 }
+
+declare module 'standard-version' {
+  async function standardVersion(args: any): Promise<any>;
+  export = standardVersion;
+}

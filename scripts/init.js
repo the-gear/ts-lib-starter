@@ -1,6 +1,7 @@
 const kleur = require('kleur');
 const prompts = require('prompts');
 const sh = require('shelljs');
+const standardVersion = require('standard-version');
 const sortObjectByKeyNameList = require('sort-object-keys');
 const replace = require('replace-in-file');
 const { resolve, join, basename } = require('path');
@@ -546,6 +547,10 @@ async function main() {
   });
 
   await initGitHooks();
+
+  await standardVersion({
+    firstRelease: true,
+  });
 
   log(kleur.cyan(kleur.bold("\nOK, you're all set. Happy type-safe coding!! 🌊 🏄 ‍🤙 \n")));
 }

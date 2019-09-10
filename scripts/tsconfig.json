@@ -1,5 +1,5 @@
 {
   "extends": "../config/tsconfig.json",
   "compilerOptions": {},
-  "include": [".", "../config/global.d.ts"]
+  "include": ["./types.d.ts", "../config/global.d.ts"]
 }
