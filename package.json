@@ -73,7 +73,7 @@
     "json5": "^2.1.0",
     "kleur": "^3.0.3",
     "lint-staged": "^9.2.5",
-    "prettier": "^1.16.4",
+    "prettier": "^2.0.2",
     "pretty-bytes": "^5.1.0",
     "prompts": "^2.0.4",
     "replace-in-file": "^4.1.3",
