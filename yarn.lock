@@ -6563,12 +6563,12 @@ tslint-etc@^1.5.0:
     tsutils "^3.0.0"
     tsutils-etc "^1.0.0"
 
-tslint-react@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/tslint-react/-/tslint-react-4.0.0.tgz#b4bb4c01c32448cb14d23f143a2f5e4989bb961e"
-  integrity sha512-9fNE0fm9zNDx1+b6hgy8rgDN2WsQLRiIrn3+fbqm0tazBVF6jiaCFAITxmU+WSFWYE03Xhp1joCircXOe1WVAQ==
+tslint-react@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/tslint-react/-/tslint-react-5.0.0.tgz#d0ae644e8163bdd3e134012e9353094904e8dd44"
+  integrity sha512-/IbcSmoBPlFic8kQaRfQ4knTY4mivwo5LVzvozvX6Dyu2ynEnrh1dIcR2ujjyp/IodXqY/H5GbxFxSMo/Kf2Hg==
   dependencies:
-    tsutils "^3.9.1"
+    tsutils "^3.17.1"
 
 tslint@^5.15.0:
   version "5.20.0"
@@ -6601,7 +6601,7 @@ tsutils@^2.29.0:
   dependencies:
     tslib "^1.8.1"
 
-tsutils@^3.0.0, tsutils@^3.9.1:
+tsutils@^3.0.0, tsutils@^3.17.1:
   version "3.17.1"
   resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-3.17.1.tgz#ed719917f11ca0dee586272b2ac49e015a2dd759"
   integrity sha512-kzeQ5B8H3w60nFY2g8cJIuH7JDpsALXySGtwGJ0p2LSjLgay3NdIpqq5SoOBe46bKDW2iq25irHCr8wjomUS2g==
